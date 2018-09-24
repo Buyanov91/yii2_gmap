@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 09 2018 г., 11:34
+-- Время создания: Сен 24 2018 г., 17:18
 -- Версия сервера: 10.1.33-MariaDB
 -- Версия PHP: 7.2.6
 
@@ -1140,7 +1140,8 @@ INSERT INTO `places` (`id`, `address`, `lat`, `lng`) VALUES
 -- Индексы таблицы `places`
 --
 ALTER TABLE `places`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `index_address` (`address`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц

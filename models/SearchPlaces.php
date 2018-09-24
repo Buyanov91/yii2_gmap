@@ -6,7 +6,6 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Places;
-use yii\validators\RequiredValidator;
 
 class SearchPlaces extends Places
 {

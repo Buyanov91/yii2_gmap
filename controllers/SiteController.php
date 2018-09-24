@@ -30,7 +30,7 @@ class SiteController extends Controller
     public function actionIndex()
     {   
         //GET запрос поиска города
-        $search = Yii::$app->request->get('SearchPlaces');                                      
+        $search = Yii::$app->request->get('SearchPlaces');
         //Если GET нет, выводим все города из БД
         if (!$search) {
 
@@ -43,7 +43,7 @@ class SiteController extends Controller
             ]);
 
         } else {
-            
+
             $model = Places::findOne($search);
             $models = Places::find()->all();
             $places = array();

@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Places;
+use yii\validators\RequiredValidator;
 
 class SearchPlaces extends Places
 {
@@ -28,6 +29,7 @@ class SearchPlaces extends Places
 
     public function search($params)
     {
+
         $query = Places::find();
 
         $dataProvider = new ActiveDataProvider([
@@ -37,9 +39,9 @@ class SearchPlaces extends Places
 
         $this->load($params);
 
-        if ($this->validate()) {
+        if (!$this->validate()) {
             return $dataProvider;
         }
-
+        return $dataProvider;
     }
 }

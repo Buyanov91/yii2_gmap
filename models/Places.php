@@ -18,6 +18,7 @@ class Places extends \yii\db\ActiveRecord
             [['address', 'lat', 'lng'], 'required'],
             [['lat', 'lng'], 'number'],
             [['address'], 'string', 'max' => 255],
+            [['address'], 'filter', 'filter' => 'trim'],
         ];
     }
 

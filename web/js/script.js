@@ -11,6 +11,11 @@ function initMap() {
 	});
 	var geocoder = new google.maps.Geocoder();
 
+    var marker = new google.maps.Marker({
+        map: map,
+        position: {lat: lat, lng: lng}
+    });
+
 	document.getElementById('submit').addEventListener('click', function() {
 	  geocodeAddress(geocoder, map);
 	});

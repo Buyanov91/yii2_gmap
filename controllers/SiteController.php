@@ -44,28 +44,34 @@ class SiteController extends Controller
 
         } else {
             
-            $model = Places::findOne($search);          //Город, который ввели
-            $models = Places::find()->all();            //Все города
-            $places = array();                          //Массив для вывода городов и расстояний
+            $model = Places::findOne($search);
+            $models = Places::find()->all();
+            $places = array();
+            if(!$model) {
 
-            $lat1 = $model->lat;                        //Широта нашего города
-            $lng1 = $model->lng;                        //Долгота нашего города
+                ArrayHelper::setValue($places, ['id' => ''], ['address' => 'Город не найден', 'distance' => '']);
 
-            foreach ($models as $m) {
-                $address    = $m->address;              
-                $lat2       = $m->lat;
-                $lng2       = $m->lng;
-                $id         = $m->id;
-                //Считаем расстояние между городами
-                $distance   = Places::calcDistance ($lat1, $lng1, $lat2, $lng2); 
-                //Добавлям элемент в массив $places
-                ArrayHelper::setValue($places, ['id'=> $id], ['address' => $address, 'distance' => $distance]);
+            } else {
+
+                $lat1 = $model->lat;
+                $lng1 = $model->lng;
+
+                foreach ($models as $m) {
+                    $address = $m->address;
+                    $lat2 = $m->lat;
+                    $lng2 = $m->lng;
+                    $id = $m->id;
+                    //Считаем расстояние между городами
+                    $distance = Places::calcDistance($lat1, $lng1, $lat2, $lng2);
+                    //Добавлям элемент в массив $places
+                    ArrayHelper::setValue($places, ['id' => $id], ['address' => $address, 'distance' => $distance]);
+                }
+                //Сортировка массива по расстоянию
+                ArrayHelper::multisort($places, ['distance'], [SORT_ASC]);
             }
-            //Сортировка массива по расстоянию
-            ArrayHelper::multisort($places, ['distance'], [SORT_ASC]);
-            //Создаем Провайдер данных по нашему массиву
+
             $dataProvider = new ArrayDataProvider(['allModels' => $places]);
-            //Выводим в вид
+
             return $this->render('search', [
                 'dataProvider' => $dataProvider,
             ]);

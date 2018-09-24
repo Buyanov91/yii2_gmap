@@ -31,13 +31,13 @@ class Places extends \yii\db\ActiveRecord
         ];
     }
     //ФУНКЦИЯ РАСЧЕТА ДЛИНЫ МЕЖДУ ГОРОДАМИ
-    public function calcDistance ($φA, $λA, $φB, $λB) 
+    public function calcDistance ($lat1, $long1, $lat2, $long2)
     {
         // перевести координаты в радианы
-        $lat1 = $φA * M_PI / 180;
-        $lat2 = $φB * M_PI / 180;
-        $long1 = $λA * M_PI / 180;
-        $long2 = $λB * M_PI / 180;
+        $lat1 = $lat1 * M_PI / 180;
+        $lat2 = $lat2 * M_PI / 180;
+        $long1 = $long1 * M_PI / 180;
+        $long2 = $long2 * M_PI / 180;
      
         // косинусы и синусы широт и разницы долгот
         $cl1 = cos($lat1);

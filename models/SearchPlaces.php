@@ -23,7 +23,7 @@ class SearchPlaces extends Places
     {
 
         return Model::scenarios();
-        
+
     }
 
     public function search($params)
@@ -32,15 +32,14 @@ class SearchPlaces extends Places
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['address' => SORT_ASC]],
         ]);
 
         $this->load($params);
 
-        if (!$this->validate()) {
+        if ($this->validate()) {
             return $dataProvider;
         }
-    
-        return $dataProvider;
-      
+
     }
 }

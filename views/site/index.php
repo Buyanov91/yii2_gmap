@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use models\Places;
+use app\models\Places;
 
 $this->title = 'Города';
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'address',
                     'filterInputOptions' => [
-                        'placeholder' => 'Введите ваше местоположение и нажмите Inter',
+                        'placeholder' => 'Введите ваше местоположение и нажмите Enter',
                         'class' => 'form-control',
                         'address' => null,
                     ]

@@ -26,9 +26,10 @@ class SiteController extends Controller
             ],
         ];
     }
+
     //ВЫВОД ВСЕХ ГОРОДОВ И ПОИСК
     public function actionIndex()
-    {   
+    {
         //GET запрос поиска города
         $search = Yii::$app->request->get('SearchPlaces');
         //Если GET нет, выводим все города из БД
@@ -47,7 +48,7 @@ class SiteController extends Controller
             $model = Places::findOne($search);
             $models = Places::find()->all();
             $places = array();
-            if(!$model) {
+            if (!$model) {
 
                 ArrayHelper::setValue($places, ['id' => ''], ['address' => 'Город не найден', 'distance' => '']);
 
@@ -85,6 +86,7 @@ class SiteController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+
     //СОЗДАНИЕ ГОРОДА
     public function actionCreate()
     {
@@ -98,6 +100,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
     //РЕДАКТИРОВАНИЕ ГОРОДА
     public function actionUpdate($id)
     {
@@ -111,6 +114,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
     //УДАЛЕНИЕ ГОРОДА
     public function actionDelete($id)
     {
@@ -118,6 +122,7 @@ class SiteController extends Controller
 
         return $this->redirect(['index']);
     }
+
     //ПОИСК ГОРОДА ПО ID
     protected function findModel($id)
     {
